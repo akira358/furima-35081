@@ -1,5 +1,5 @@
 class FurimasController < ApplicationController
   def index
-    @furimas = Frima.all
+    @furimas = Furima.all
   end
 end
