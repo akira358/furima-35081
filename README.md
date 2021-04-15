@@ -1,24 +1,64 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|| Column       | Type   | Options    |
+| --------------| ------ | ----------- |
+| name          | string | null: false |
+| email         | string | null: false |
+| password      | string | null: false |
+|last-name      | string | null: false |
+|first-name     | string | null:false  |
+|last-name-kana | string | null: false |
+|first-name-kana| string | null: false |
+|birth_date_1i  | string | null :false |
+|birth_date_2i  | string | null :false |
+|birth_date_3i  | string | null :false |
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+### Association
+- has_many :items
+- has_many :orders
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column     | Type   | Options                     |
+|------------| ------ | ----------------------------|
+|text        | string | null: false                 |
+|category    | text   | null:false                  |
+|price       | integer| null:false                  |
+|info        | string | null: false                 |
+|sales-status|string  | null: false
+|scheduled-delivery|string| null: false
+| user_id|references| null:false,   foreign_key: true|
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_one :orders
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders テーブル
 
-* Deployment instructions
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| users    | string | null: false |
+| items    | string | null: false |
 
-* ...
+### Association
+- belongs_to :item
+- has_one :addresses
+- belongs_to :user
+
+## addresses テーブル
+
+ Column         | Type   | Options     |
+| --------------| ------ | ----------- |
+| postal code   | string | null: false |
+|prefecture code| string | null: false |
+|city           | string | null: false |
+|street         | string | null: false |
+|other address  | string | null: false | 
+
+
+### Association
+- belongs_to :order
