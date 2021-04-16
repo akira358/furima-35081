@@ -5,7 +5,7 @@
 || Column           | Type   | Options     |
 | ------------------| ------ | ----------- |
 | name              | string | null: false |
-| email             | string | unique: true|
+| email             | string | unique: true, default|
 | encrypted_password| string | null: false |
 |last_name          | string | null: false |
 |first_name         | string | null: false |
@@ -56,7 +56,7 @@
 | --------------| --------- | ----------- |
 |postal_code    | string    | null: false |
 |prefecture_id  | integer   | null: false |
-|city_id        | integer   | null: false |
+|city           | text      | null: false |
 |street         | string    | null: false |
 |build          | string    |             | 
 |phone_number   | string    | null: false |
