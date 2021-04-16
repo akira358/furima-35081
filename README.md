@@ -8,10 +8,10 @@
 | email             | string | unique: true|
 | encrypted_password| string | null: false |
 |last_name          | string | null: false |
-|first_name         | string | null:false  |
+|first_name         | string | null: false |
 |last_name_kana     | string | null: false |
 |first_name_kana    | string | null: false |
-|birth_date         | date   | null :false |
+|birth_date         | date   | null: false |
 
 
 
@@ -22,17 +22,17 @@
 
 ## items テーブル
 
-| Column               | Type     | Options                      |
-|----------------------| ---------| -----------------------------|
-|name                  | string   | null: false                  |
-|text                  | text     | null: false                  |
-|category_id           | integer  | null:false                   |
-|info_id               | integer  | null: false                  |
-|shipping_fee_status_id|integer   | null: false                  |
-|prefecture_id         |integer   | null: false                  |
-|schedule_id           |integer   |null: false                   |
-|user                  |references| null:false, foreign_key: true|
-|price                 | integer  | null:false                   |
+| Column               | Type     | Options                       |
+|----------------------| ---------| ------------------------------|
+|name                  | string   | null: false                   |
+|text                  | text     | null: false                   |
+|category_id           | integer  | null:false                    |
+|info_id               | integer  | null: false                   |
+|shipping_fee_status_id|integer   | null: false                   |
+|prefecture_id         |integer   | null: false                   |
+|schedule_id           |integer   | null: false                   |
+|user                  |references| null: false, foreign_key: true|
+|price                 | integer  | null: false                   |
 
 ### Association
 - belongs_to :user
