@@ -5,13 +5,13 @@
 || Column           | Type   | Options    |
 | ------------------| ------ | ----------- |
 | name              | string | null: false |
-| email             | string | unique:true |
+| email             | string | null: false |
 | encrypted_password| string | null: false |
 |last_name          | string | null: false |
 |first_name         | string | null:false  |
 |last_name_kana     | string | null: false |
 |first_name_kana    | string | null: false |
-|date               | string | null :false |
+|birth_date         | date   | null :false |
 
 
 
@@ -24,12 +24,15 @@
 
 | Column               | Type     | Options                     |
 |----------------------| ---------| ----------------------------|
+|name                  | text     | null: false                 |
 |text                  | string   | null: false                 |
 |category              | text     | null:false                  |
-|price                 | integer  | null:false                  |
 |info                  | string   | null: false                 |
-|genre_id              |integer   | null: false                 |
+|shipping_fee_status_id|integer   | null: false                 |
+|prefecture_id         |integer   | null: false                 |
+|schedule_id           |integer   |null: false                  |
 |user                  |references| null:false, foreign_key: true|
+|price                 | integer  | null:false                  |
 
 ### Association
 - belongs_to :user
@@ -37,26 +40,27 @@
 
 ## orders テーブル
 
-| Column   |     Type   | Options     |
-| -------- | ---------- | ----------- |
-| users    | references | null: false |
-| items    | references | null: false |
+| Column  |     Type   | Options     |
+| --------| ---------- | ----------- |
+| user    | references | null: false |
+| item    | references | null: false |
 
 ### Association
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 - belongs_to :user
 
 ## addresses テーブル
 
- Column         | Type   | Options     |
-| --------------| ------ | ----------- |
-| postal code   | string | null: false |
-|prefecture code| string | null: false |
-|city           | string | null: false |
-|street         | string | null: false |
-|other address  | string | null: false | 
-
+ Column         | Type      | Options     |
+| --------------| --------- | ----------- |
+|postal_code    | string    | null: false |
+|prefecture_id  | integer   | null: false |
+|city_id        | integer   | null: false |
+|street         | string    | null: false |
+|build          | string    |             | 
+|phone_number   | string    | null: false |
+|orders_id      | references|null:false, foreign_key: true|
 
 ### Association
 - belongs_to :order
