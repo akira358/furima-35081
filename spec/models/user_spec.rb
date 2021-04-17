@@ -105,7 +105,8 @@ RSpec.describe User, type: :model do
     it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name  kana can't be blank")
+      binding.pry
+      expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
     it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
       @user.first_name_kana = ''
