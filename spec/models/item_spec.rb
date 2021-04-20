@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it'商品名が必須であること' do
-        @item.name = 1
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Schedule can't be blank", "Schedule is not a number")
       end
       it'販売価格についての情報が必須であること' do
-        @item.price = 1
+        @item.price = ''
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
