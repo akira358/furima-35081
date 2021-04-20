@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
 
     const addTaxPro   = document.getElementById("profit")
     addTaxPro.innerHTML = Math.floor(inputValue * 0.9)
-    console.log(addTaxPro)
+    
   }) 
   })
 

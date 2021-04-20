@@ -9,7 +9,6 @@ class Item < ApplicationRecord
     validates :shipping_fee_status_id
     validates :prefecture_id
     validates :schedule_id
-    # validates :shopping_fee format:{only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
     validates :shipping_fee_status_id
     validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
   end
@@ -21,7 +20,7 @@ class Item < ApplicationRecord
     validates :shipping_fee_status_id
   end  
   
-  VALID_PASSWORD_REGEX =/\A[a-z0-9]+\z/i
+  
   
 
 

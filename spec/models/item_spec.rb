@@ -22,35 +22,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it'商品の状態についての情報' do
-        @item.info_id = ''
+      it'商品の状態についての情報が必須であること' do
+        @item.text = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Info is not a number")
+        expect(@item.errors.full_messages).to include("Text can't be blank")
+      end
+      it'商品の状態についての情報' do
+        @item.info_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Info must be other than 1")
       end
       it'カテゴリーの情報が必須であること' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
-      end
-      it'商品の状態についての情報が必須であること' do
-        @item.text = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Text can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it'配送料の負担についての情報が必須であること' do
         @item.shipping_fee_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee status can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping fee status must be other than 1")
       end
       it'発送元の地域についての情報が必須であること' do
         @item.prefecture_id= 1
         @item.valid? 
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it'発送までの日数についての情報が必須であること' do
         @item.schedule_id = 1
         @item.valid? 
-        expect(@item.errors.full_messages).to include("Schedule can't be blank", "Schedule is not a number")
+        expect(@item.errors.full_messages).to include("Schedule must be other than 1")
       end
       it'販売価格についての情報が必須であること' do
         @item.price = ''
@@ -67,9 +67,18 @@ RSpec.describe Item, type: :model do
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-      it'販売価格は半角数字のみ保存可能であること' do
+      it'販売価格は半角英語だけでは登録できないこと' do
         @item.price = 'TTT'
         @item.valid? 
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it'全角文字では登録できないこと' do
+        @item.price = 'ああ３７'
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it'半角英数混合では登録できないこと' do
+        @item.price = 'A13'
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
       end
