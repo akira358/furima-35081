@@ -22,9 +22,7 @@ class Item < ApplicationRecord
   end  
   
   VALID_PASSWORD_REGEX =/\A[a-z0-9]+\z/i
-  validates :shipping_fee_status_id, presence: true,
-            format: { with: VALID_PASSWORD_REGEX,
-             message: "は半角6文字以上の半角英数字"}
+  
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
