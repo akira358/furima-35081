@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it'商品名が必須であること' do
-        @item.name = ''
+        @item.name = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
@@ -28,42 +28,42 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Info is not a number")
       end
       it'カテゴリーの情報が必須であること' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it'商品の状態についての情報が必須であること' do
-        @item.text = ''
+        @item.text = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
       it'配送料の負担についての情報が必須であること' do
-        @item.shipping_fee_status_id = ''
+        @item.shipping_fee_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee status can't be blank")
       end
       it'発送元の地域についての情報が必須であること' do
-        @item.prefecture_id= ''
+        @item.prefecture_id= 1
         @item.valid? 
         expect(@item.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
       end
       it'発送までの日数についての情報が必須であること' do
-        @item.schedule_id = ''
+        @item.schedule_id = 1
         @item.valid? 
         expect(@item.errors.full_messages).to include("Schedule can't be blank", "Schedule is not a number")
       end
       it'販売価格についての情報が必須であること' do
-        @item.price = ''
+        @item.price = 1
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
       it'販売価格は299円以下では保存ができない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
       it'販売価格は10000000円以上では保存ができない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
