@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :schedule_id
     validates :shipping_fee_status_id
-    validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -29,5 +29,5 @@ class Item < ApplicationRecord
   belongs_to :info
   belongs_to :prefecture
   belongs_to :schedule
-  belongs_to :shipping_fee
+  belongs_to :shipping_fee_status
 end
