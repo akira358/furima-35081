@@ -23,11 +23,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def item_params
     params.require(:item).permit(:name, :image, :text, :category_id, :info_id, :shipping_fee_status_id, :prefecture_id, :schedule_id, :price).merge(user_id: current_user.id)
