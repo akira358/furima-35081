@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  belongs_to :user
 
   with_options presence: true do
     validates :image
@@ -30,4 +31,5 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :schedule
   belongs_to :shipping_fee_status
+  
 end
