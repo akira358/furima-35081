@@ -25,8 +25,7 @@ class ItemsController < ApplicationController
   def edit
   end
 
-  def update
-     
+  def update 
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -37,14 +36,11 @@ class ItemsController < ApplicationController
   def show
   end
 
-
    def destroy
      if  @item.destroy
-        current_user != @item.user.id
         redirect_to root_path
      end
     end
-   
 
    def edit
    end
@@ -55,7 +51,6 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :text, :category_id, :info_id, :shipping_fee_status_id, :prefecture_id, :schedule_id, :price).merge(user_id: current_user.id)
   end
 
-    
   def move_to_index
     unless current_user.id == @item.user.id
            redirect_to action: :index
