@@ -22,25 +22,20 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-     @item = Item.find(params[:id])
-     # @item.update(item_params)
-   if @item.valid?
-      @item.save
-      redirect_to item_path
+     
+    if @item.update(item_params)
+      redirect_to item_path(@item)
     else
       render :edit
     end
   end 
   
   def show
-    @item = Item.find(params[:id])
   end
 
-  
   def item_params
     params.require(:item).permit(:name, :image, :text, :category_id, :info_id, :shipping_fee_status_id, :prefecture_id, :schedule_id, :price).merge(user_id: current_user.id)
   end
@@ -53,8 +48,6 @@ class ItemsController < ApplicationController
      unless current_user.id?
             redirect_to action: :index
     end  
-
-     
   end         
   
   def set_item
