@@ -1,28 +1,22 @@
 class OrdersAddress
   include ActiveModel::Model
-  attr_accessor :text, :category_id, :info_id, :shipping_fee_status_id, :prefecture_id, :schedule_id, :price, :user_id
+  attr_accessor :postal_code, :prefecture_id, :city, :build, :street, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :image
-    validates :name
-    validates :category_id
-    validates :text
-     validates :shipping_fee_status_id
-    validates :prefecture_id
-    validates :schedule_id
-    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :city
+    validates :street
+    validates :user_id
+    validates :item_id
+    validates :phone_number, length: {maximum:11}
+    validates :token
   end
-  with_options numericality: { other_than: 1 } do
-    validates :category_id
-    validates :info_id
-    validates :prefecture_id
-    validates :schedule_id
-    validates :shipping_fee_status_id
-  end  
+  
 
   def save
-    orders = Order.create(price: price, user_id: user_id )
-    Addres.create(image: image, name: name, category_id: category_id, text: text, :shipping_fee_status_id: shipping_fee_status_id, prefecture_id: prefecture_id, schedule_id: schedule_id, info_id: info_id)
+    order = Order.create(item_id: item_id, user_id: user_id )
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, build: build, street: street, phone_number: phone_number, orders_id: order)
   end
 end
 

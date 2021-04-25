@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :sell_item,only: [:edit, :update]
 
 
   def index
@@ -21,9 +22,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
   
   def edit
   end
+  
 
   def update 
     if @item.update(item_params)
@@ -42,8 +45,7 @@ class ItemsController < ApplicationController
      end
     end
 
-   def edit
-   end
+  
    
    private
 
@@ -60,4 +62,10 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
- end
+
+  def sell_item
+    @item.order.present?
+    redirect_to root_path
+  end
+end
+
