@@ -84,7 +84,6 @@ RSpec.describe Order, type: :model do
     it'tokenは必須である' do
       @order.token =''
       @order.valid?
-      binding.pry
       expect(@order.errors.full_messages).to include("Token can't be blank")
     end
     end

@@ -5,7 +5,7 @@ FactoryBot.define do
     city {'東京都'}
     street {'1-1'}
     build {'東京ハイツ'}
-    phone_number '2000'
+    phone_number {2000}
     token {"sampletoken"}
 
     
