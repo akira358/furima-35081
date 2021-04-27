@@ -67,3 +67,5 @@ gem 'pry-rails'
 
 gem 'devise'
 gem "payjp"
+
+gem "aws-sdk-s3", require: false
